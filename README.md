@@ -8,4 +8,4 @@
 - git commit -m <MESSAGE>: registra um commit com a sua mensagem.
 - git log --oneline -n X: retorna os X últimos commits.
 - git push origin <BRANCH>: envia as modificações locais para repositório remoto.
-- git pull origin <BRANCH>: baixar as modificações remotas para o repositório local.
+- git pull origin <BRANCH>: baixa as modificações remotas para o repositório local.
