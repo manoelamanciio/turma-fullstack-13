@@ -2,8 +2,8 @@ package br.com.treina.recife.sgp.api.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.treina.recife.sgp.api.model.Usuario;
+import br.com.treina.recife.sgp.api.model.Projeto;
 
-public interface ProjetoRepository extends JpaRepository<Usuario, Long> {
+public interface ProjetoRepository extends JpaRepository<Projeto, Long> {
     
 }
