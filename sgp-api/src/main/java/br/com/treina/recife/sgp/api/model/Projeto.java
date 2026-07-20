@@ -27,7 +27,7 @@ public class Projeto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @Column(nullable = false)// @column cria uma coluna
+    @Column(nullable = false) // @column cria uma coluna
     private String nome;
 
     @Column(columnDefinition = "TEXT") // em mysql utiliza o TEXT
