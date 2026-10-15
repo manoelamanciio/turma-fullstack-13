@@ -13,7 +13,7 @@ public record DadosRequisicaoTarefa(
     @NotBlank @Size(min = 3)
     String titulo,
     String descricao,
-    @NotNull @FutureOrPresent
+    @NotNull
     LocalDate dataCriacao,
     @FutureOrPresent
     LocalDate dataConclusao,

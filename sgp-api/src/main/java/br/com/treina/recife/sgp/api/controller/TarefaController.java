@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import br.com.treina.recife.sgp.api.dto.DadosRequisicaoTarefa;
 
 import br.com.treina.recife.sgp.api.model.Tarefa;
 import br.com.treina.recife.sgp.api.service.TarefaService;
@@ -26,8 +27,8 @@ public class TarefaController {
     @Autowired
     private TarefaService tarefaService;
     
-    @PostMapping
-    public ResponseEntity<Tarefa> cadastrarTarefa(@Valid @RequestBody Tarefa dados) {
+     @PostMapping
+    public ResponseEntity<Tarefa> cadastrarTarefa(@Valid @RequestBody DadosRequisicaoTarefa dados) {
         return ResponseEntity.status(HttpStatus.CREATED).body(tarefaService.cadastrar(dados));
     }
 

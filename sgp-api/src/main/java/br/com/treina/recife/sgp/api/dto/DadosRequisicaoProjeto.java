@@ -12,7 +12,7 @@ public record DadosRequisicaoProjeto(
     @NotBlank @Size(min = 3)
     String nome,
     String descricao,
-    @NotNull @FutureOrPresent
+    @NotNull
     LocalDate dataInicio,
     @FutureOrPresent
     LocalDate dataConclusao,

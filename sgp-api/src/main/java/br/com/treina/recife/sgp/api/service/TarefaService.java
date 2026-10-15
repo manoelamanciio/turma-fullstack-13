@@ -5,8 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.treina.recife.sgp.api.dto.DadosRequisicaoTarefa;
+import br.com.treina.recife.sgp.api.model.Projeto;
 import br.com.treina.recife.sgp.api.model.Tarefa;
+import br.com.treina.recife.sgp.api.model.Usuario;
+import br.com.treina.recife.sgp.api.repository.ProjetoRepository;
 import br.com.treina.recife.sgp.api.repository.TarefaRepository;
+import br.com.treina.recife.sgp.api.repository.UsuarioRepository;
 
 @Service
 public class TarefaService {
@@ -14,10 +19,33 @@ public class TarefaService {
     @Autowired
     private TarefaRepository tarefaRepository;
 
-    public Tarefa cadastrar(Tarefa dados) {
-        // TODO: validar data de inicio < data de conclusao.
+    @Autowired
+    private ProjetoRepository projetoRepository;
 
-        return tarefaRepository.save(dados);
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    public Tarefa cadastrar(DadosRequisicaoTarefa dados) {
+        Projeto projeto = projetoRepository.findById(dados.idProjeto())
+            .orElseThrow(() -> new RuntimeException("Projeto não encontrado"));
+
+        Usuario usuario = null;
+        if (dados.idUsuario() != null) {
+            usuario = usuarioRepository.findById(dados.idUsuario())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        }
+
+        Tarefa tarefa = new Tarefa();
+        tarefa.setTitulo(dados.titulo());
+        tarefa.setDescricao(dados.descricao());
+        tarefa.setDataCriacao(dados.dataCriacao());
+        tarefa.setDataConclusao(dados.dataConclusao());
+        tarefa.setPrioridade(dados.prioridade());
+        tarefa.setStatus(dados.statusTarefa());
+        tarefa.setProjeto(projeto);
+        tarefa.setUsuario(usuario);
+
+        return tarefaRepository.save(tarefa);
     }
 
     public Tarefa buscar(Long idTarefa) {
@@ -36,5 +64,5 @@ public class TarefaService {
         dadosAtualizados.setId(idTarefa);
         return tarefaRepository.save(dadosAtualizados);
     }
-    
+
 }
