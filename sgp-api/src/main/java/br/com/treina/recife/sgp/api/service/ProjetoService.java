@@ -25,7 +25,7 @@ public class ProjetoService {
 
     public DadosRespostaProjeto cadastrar(DadosRequisicaoProjeto dados) {
         Projeto projeto = new Projeto();
-        
+
         projeto.setNome(dados.nome());
         projeto.setDescricao(dados.descricao());
         projeto.setDataInicio(dados.dataInicio());
@@ -41,15 +41,14 @@ public class ProjetoService {
         projeto = projetoRepository.save(projeto);
 
         return new DadosRespostaProjeto(
-            projeto.getId(), 
-            projeto.getNome(), 
-            projeto.getDescricao(), 
-            projeto.getDataInicio(), 
-            projeto.getDataConclusao(), 
-            projeto.getStatus().toString(), 
-            projeto.getResponsavel().getId(), 
-            projeto.getResponsavel().getNome()
-        );
+                projeto.getId(),
+                projeto.getNome(),
+                projeto.getDescricao(),
+                projeto.getDataInicio(),
+                projeto.getDataConclusao(),
+                projeto.getStatus().toString(),
+                projeto.getResponsavel().getId(),
+                projeto.getResponsavel().getNome());
     }
 
     public Projeto buscar(Long idProjeto) {
@@ -75,5 +74,5 @@ public class ProjetoService {
     public void deletar(Long idProjeto) {
         projetoRepository.deleteById(idProjeto);
     }
-    
+
 }
